@@ -2,22 +2,11 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
-    protected function _initView()
+    protected function _initDoctype()
     {
-        // Initialise view
-        $view = new Zend_View();
+        $this->bootstrap('view');
+        $view = $this->getResource('view');
         $view->doctype('XHTML1_TRANSITIONAL');
-        $view->headTitle('SubYT');
-        $view->headLink()->appendStylesheet('/css/main.css');
-        
-        // Add it to the ViewRenderer
-        $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper(
-            'ViewRenderer'
-        );
-        $viewRenderer->setView($view);
-
-        // Return it, so that it can be stored by the bootstrap
-        return $view;
     }
 
     /**
