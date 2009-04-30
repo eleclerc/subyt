@@ -1,9 +1,15 @@
 <?php echo $this->doctype() ?>
 <html>
 <head>
-    <?php echo $this->headTitle() ?>
+  <?php echo $this->headTitle() ?>
+  <?php echo $this->headLink() ?>
+  <?php echo $this->headScript() ?>
 </head>
 <body>
-    <?php echo $this->layout()->content ?>
+<div id="container">
+  <h1><a href="/">SubYT</a></h1>
+  <?php echo $this->layout()->content ?>
+  <p id="footer">&copy; 2009 <a href="http://danceric.net">Danceric</a></p>
+</div>
 </body>
 </html>

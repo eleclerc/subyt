@@ -1,0 +1,62 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 1em;
+}
+
+h1 {
+  font-family: Georgia, Times, serif;
+  font-size: 4em;
+}
+
+h1 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+#container {
+  width: 80% !important;
+  margin: 0.5em auto;
+}
+
+p, ul {
+  margin: 0 auto !important;
+  padding-bottom: 1em;
+}
+
+form {
+  margin: 1em auto !important;
+}
+
+input, label {
+  font-size: 1.6em;
+}
+
+
+#footer {
+  font-size: 0.75em;
+  padding-left: 3em;
+  height: 3em;
+  padding-top: 4em;
+}
+
+.lfloat {
+  float: left;
+  margin-right: 5em;
+}
+
+.latests {
+  clear: both;
+  padding-bottom: 4em;
+}
+
+.intro {
+    font-weight: bold;
+    background-color: #EAF6FD;
+    border: 1px solid: #CFCFCF;
+    padding: 2em;
+}
+

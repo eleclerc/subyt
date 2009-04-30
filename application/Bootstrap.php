@@ -8,7 +8,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view = new Zend_View();
         $view->doctype('XHTML1_TRANSITIONAL');
         $view->headTitle('SubYT');
-
+        $view->headLink()->appendStylesheet('/css/main.css');
+        
         // Add it to the ViewRenderer
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper(
             'ViewRenderer'
