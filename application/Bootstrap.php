@@ -2,6 +2,18 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
+    /**
+     * Autoload default stuff (Api_, Form_, Model_, Model_DbTable, Plugin_)
+     * */
+    protected function _initAutoload()
+    {
+        $moduleLoader = new Zend_Application_Module_Autoloader(array( 
+            'namespace' => '', 
+            'basePath'  => APPLICATION_PATH)); 
+
+        return $moduleLoader; 
+    }
+    
     protected function _initDoctype()
     {
         $this->bootstrap('view');
