@@ -10,4 +10,6 @@ Requirements
 These libraries are needed in the `library` folder
 
 - [Zend Framewok](http://framework.zend.com) v1.8.0+
-- [Scienta ZF Debug Bar](http://jokke.dk/software/scientadebugbar) v1.4+
+- [ZFDebug Bar](http://code.google.com/p/zfdebug/) v1.4.1+
+
+Apache web server needs to be configured to have the `public` folder as the DocumentRoot

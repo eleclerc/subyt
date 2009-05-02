@@ -10,30 +10,30 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     }
 
     /**
-     * Initialize the Scienta ZF Debug Bar
+     * Initialize the ZFDebug Bar
      */
-    protected function _initScienta()
+    protected function _initZFDebug()
     {
-        $scConfig = $this->getOption('scienta');
+        $zfdebugConfig = $this->getOption('zfdebug');
 
-        if ($scConfig['enabled'] != 1) {
+        if ($zfdebugConfig['enabled'] != 1) {
             return;
         }
 
-        require_once 'Scienta/Controller/Plugin/Debug.php';
+        require_once 'ZFDebug/Controller/Plugin/Debug.php';
 
         // Ensure DB instance is present, and fetch it
         $this->bootstrap('Db');
         $db = $this->getResource('Db');
 
         $options = array('database_adapter' => $db);
-        $scBar = new Scienta_Controller_Plugin_Debug($options);
+        $zfdebugBar = new ZFDebug_Controller_Plugin_Debug($options);
 
         // Ensure front controller instance is present, and fetch it
         $this->bootstrap('FrontController');
         $front = $this->getResource('FrontController');
 
-        $front->registerPlugin($scBar);
+        $front->registerPlugin($zfdebugBar);
     }
 }
 
