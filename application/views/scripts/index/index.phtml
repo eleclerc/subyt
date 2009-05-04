@@ -1,1 +1,56 @@
-there will be content
+<p class="intro">Browse your favorite West Coast Swing video by <br />
+<br />
+<?php foreach ($this->categories as $category): ?>
+    <a href="#"><?php echo $category['category'] ?></a>,
+<?php endforeach; ?><br />
+<br />
+or <a href="#">see all videos</a></p>
+<br />
+<br />
+<br />
+
+<div class="lfloat">
+  <h3>Latest 5 Videos</h3>
+  <ul>
+  <?php foreach ($this->latest_video as $video): ?>
+    <li><a href="/video/show/id/<?php echo $video['id'] ?>"><?php echo $video['title'] ?></a></li>
+  <?php endforeach; ?>
+  </ul>
+</div>
+
+<div class="lfloat">
+  <h3>Latest 5 Tags</h3>
+  <ul>
+  <?php foreach ($this->latest_tag as $tag): ?>
+    <li><?php echo $tag['category'] ?> : <a href="#"><?php echo $tag['name'] ?></a></li>
+  <?php endforeach; ?>
+  </ul>
+</div>
+
+<br style="clear:both" />
+<br />
+<br />
+<br />
+
+<p>You may help us improve this website by submitting a new WCS video clip for tagging</p>
+<form method="post" action="/video">
+  <input type="text" name="url" id="url" value="paste a youtube video url..." size="30" />
+  <input type="submit" value="...and submit it!" />
+</form>
+
+
+<script type="text/javascript">
+    submittext = 'paste a youtube video url...';
+    
+    $('#url').click(function(event){
+        if (event.target.value == submittext) {
+            event.target.value = '';
+        }
+    });
+
+    $('#url').blur(function(event){
+        if (event.target.value == '') {
+            event.target.value = submittext;
+        }
+    });
+</script>
