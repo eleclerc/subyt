@@ -14,10 +14,10 @@ class IndexController extends Zend_Controller_Action
         $this->view->categories = $category->fetchAll();
         
         $video = new Model_Video;
-        $this->view->latest_video = $video->getLatestVideos();
+        $this->view->latest_video = $video->getLatest();
 
         $tag = new Model_Tag;
-        $this->view->latest_tag = $tag->getLatestTags();
+        $this->view->latest_tag = $tag->getLatest();
     }
 }
 

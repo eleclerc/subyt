@@ -1,0 +1,25 @@
+<h2><?php echo $this->video['title'] ?></h2>
+
+<div id="video_object" class="lfloat">
+  <object width="425" height="344">
+    <param name="movie" value="http://www.youtube.com/v/<?php echo $this->video['youtube_id'] ?>&hl=en&fs=1"></param>
+    <param name="allowFullScreen" value="true"></param>
+    <param name="allowscriptaccess" value="always"></param>
+    <embed src="http://www.youtube.com/v/<?php echo $this->video['youtube_id'] ?>&hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed>
+  </object>
+  <p><small><a href="http://www.youtube.com/watch?v=<?php echo $this->video['youtube_id'] ?>">original source</a></small></p>
+</div>
+
+<ul>
+    <?php foreach ($this->tags as $category => $tagnames): ?>
+    <li><strong><?php echo $category ?></strong>
+    <ul>
+      <?php foreach ($tagnames as $tag): ?>
+        <li><?php echo $tag['tag'] ?></li>
+      <?php endforeach; ?>
+    </ul>
+  </li>
+  <?php endforeach; ?>
+</ul>
+
+<br style="clear:both" />

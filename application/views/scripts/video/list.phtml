@@ -1,0 +1,10 @@
+<h2>All Videos</h2>
+<ul>
+<?php foreach ($this->videos as $video): ?>
+    <li>
+        <img src="/images/ythumbs/<?php echo $video['id'] ?>.jpg" /> 
+        <a href="<?php echo $this->url(array('id' => $video['id']), 'video') ?>"><?php echo $video['title'] ?></a>
+    </li>
+<?php endforeach; ?>
+</ul>
+

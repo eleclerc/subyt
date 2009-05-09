@@ -16,7 +16,7 @@ CREATE TABLE "tagcategory" (
 CREATE TABLE "tag" (
     "id" integer NOT NULL PRIMARY KEY,
     "video_id" integer NOT NULL REFERENCES "video" ("id"),
-    "name" varchar(64) NOT NULL,
+    "tag" varchar(64) NOT NULL,
     "tagcategory_id" integer NOT NULL REFERENCES "tagcategory" ("id"),
     "created_at" date NOT NULL,
     "updated_at" date NOT NULL

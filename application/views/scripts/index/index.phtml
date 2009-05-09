@@ -1,10 +1,10 @@
 <p class="intro">Browse your favorite West Coast Swing video by <br />
 <br />
 <?php foreach ($this->categories as $category): ?>
-    <a href="#"><?php echo $category['category'] ?></a>,
+    <a href="<?php echo $this->url(array('category' => $category['category']), 'tagcategory') ?>"><?php echo $category['category'] ?></a>,
 <?php endforeach; ?><br />
 <br />
-or <a href="#">see all videos</a></p>
+or <a href="/video/list">see all videos</a></p>
 <br />
 <br />
 <br />
@@ -13,7 +13,7 @@ or <a href="#">see all videos</a></p>
   <h3>Latest 5 Videos</h3>
   <ul>
   <?php foreach ($this->latest_video as $video): ?>
-    <li><a href="/video/show/id/<?php echo $video['id'] ?>"><?php echo $video['title'] ?></a></li>
+    <li><a href="<?php echo $this->url(array('id' => $video['id']), 'video') ?>"><?php echo $video['title'] ?></a></li>
   <?php endforeach; ?>
   </ul>
 </div>
@@ -22,7 +22,7 @@ or <a href="#">see all videos</a></p>
   <h3>Latest 5 Tags</h3>
   <ul>
   <?php foreach ($this->latest_tag as $tag): ?>
-    <li><?php echo $tag['category'] ?> : <a href="#"><?php echo $tag['name'] ?></a></li>
+    <li><?php echo $tag['category'] ?> : <a href="<?php echo $this->url(array('tag' => $tag['tag']), 'tag') ?>"><?php echo $tag['tag'] ?></a></li>
   <?php endforeach; ?>
   </ul>
 </div>
