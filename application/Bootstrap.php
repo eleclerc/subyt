@@ -38,7 +38,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->bootstrap('Db');
         $db = $this->getResource('Db');
 
-        $options = array('database_adapter' => $db);
+        $options = array(
+            'database_adapter' => $db,
+            'handle_errors' => true,
+            'jquery_path' => '/js/jquery-1.3.2.min.js');
         $zfdebugBar = new ZFDebug_Controller_Plugin_Debug($options);
 
         // Ensure front controller instance is present, and fetch it
