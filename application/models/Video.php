@@ -53,4 +53,45 @@ class Model_Video
     {
         return $this->_table->fetchAll()->toArray();
     }
+    
+    /**
+     * Insert a new video in db from a youtube url
+     * 
+     * @param $url
+     * @return array newly inserted video info
+     */
+    public function addFromUrl($url)
+    {
+        $urlArray = parse_url($url);
+    	if (!isset($urlArray['query'])) {
+    		throw new Exception('Invalid URL');
+    	}
+    	
+    	parse_str($urlArray['query'], $query);
+
+    	if (!isset($query['v'])) {
+    		throw new Exception('Invalide YouTube Video URL');
+    	}
+        
+    	$youtube_id = $query['v'];
+    	        
+        $yt = new Zend_Gdata_YouTube();
+        try {
+            $videoEntry = $yt->getVideoEntry($youtube_id);
+        } catch (Zend_Gdata_App_HttpException $e) {
+            //YouTube may be down too?
+        	throw new Exception('Invalid YouTube Video URL');    
+        }   
+        
+        $data = array(
+            'url' => $url,
+            'youtube_id' => $youtube_id,
+            'title' => $videoEntry->getTitleValue(),
+        );
+        
+        $id = $this->_table->insert($data);
+        $data['id'] = $id;
+        
+        return $data;
+    }
 }

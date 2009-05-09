@@ -35,4 +35,23 @@ class videoController extends Zend_Controller_Action
     	
     	$this->view->videos = $videoModel->fetchAll();
     }
+    
+    public function submitAction()
+    {
+    	if (!$this->getRequest()->isPost()) {
+    		$this->_forward('index', 'index');
+    	}
+    	
+    	$videoModel = new Model_Video;
+    	
+    	try {
+    	   $video = $videoModel->addFromUrl($this->getRequest()->getParam('url'));
+    	} catch (Exception $e) {
+    		$video = null;
+    		$this->view->url = $this->getRequest()->getParam('url');
+    		$this->view->error = $e->getMessage();
+    	}
+        
+    	$this->view->video = $video;
+    }
 }
