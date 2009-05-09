@@ -9,6 +9,10 @@ class videoController extends Zend_Controller_Action
         
         $video = $videoModel->getByPK($this->getRequest()->getParam('id'));
         
+        if ($video['published'] != 1) {
+        	$this->_redirect('/');
+        }
+        
         $tagsRS = $tagModel->getForVideoId(
             $this->getRequest()->getParam('id')
         );
