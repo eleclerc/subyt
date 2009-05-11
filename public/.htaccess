@@ -1,6 +1,8 @@
 SetEnv APPLICATION_ENV development
 
 RewriteEngine On
+# RewriteBase should point be the directory to access the website, generally /
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
