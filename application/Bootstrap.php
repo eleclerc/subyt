@@ -3,7 +3,8 @@
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
     /**
-     * Autoload default stuff (Api_, Form_, Model_, Model_DbTable, Plugin_)
+     * Autoload stuff from the default model in all modules 
+     * (Api_, Form_, Model_, Model_DbTable, Plugin_)
      * */
     protected function _initAutoload()
     {
