@@ -7,28 +7,15 @@
 or <a href="/video/list">see all videos</a></p>
 <br />
 <br />
-<br />
 
 <div class="lfloat">
-  <h3>Latest Videos</h3>
+  <h3>Recently added/tagged</h3>
   <ul>
-  <?php foreach ($this->latest_video as $video): ?>
-    <li><a href="<?php echo $this->url(array('id' => $video['id']), 'video') ?>"><?php echo $video['title'] ?></a></li>
-  <?php endforeach; ?>
-  </ul>
-</div>
-
-<div class="lfloat">
-  <h3>Latest Tags</h3>
-  <ul>
-  <?php foreach ($this->latest_tag as $tag): ?>
-    <li><?php echo $tag['category'] ?> : <a href="<?php echo $this->url(array('tag' => $tag['tag']), 'tag') ?>"><?php echo $tag['tag'] ?></a></li>
-  <?php endforeach; ?>
+    <?php echo $this->partialLoop('index/_videoentry.phtml', $this->latest) ?>
   </ul>
 </div>
 
 <br style="clear:both" />
-<br />
 <br />
 <br />
 

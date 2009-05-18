@@ -10,14 +10,13 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
+    	// List of available categories
         $category = new Model_Tagcategory;
         $this->view->categories = $category->fetchAll();
         
+        // Latest video w/ tags info
         $video = new Model_Video;
-        $this->view->latest_video = $video->getLatest();
-
-        $tag = new Model_Tag;
-        $this->view->latest_tag = $tag->getLatest();
+        $this->view->latest = $video->getLatest();
     }
 }
 

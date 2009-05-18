@@ -33,7 +33,15 @@ class Model_Tag
                      ->where('tag.video_id = ?', $video_id);
         $rows = $db->fetchAll($select);
         
-        return $rows;
+        foreach ($rows as $tag) {
+            if ($tag['category'] == 'dancer') {
+                $tags['dancer'][] = $tag['tag'];
+            } else {
+                $tags[$tag['category']] = $tag['tag'];
+            }
+        }
+            
+        return $tags;
     }
     
     public function getForCategory($category) 

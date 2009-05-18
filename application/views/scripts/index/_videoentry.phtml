@@ -1,0 +1,25 @@
+<li>
+        <a href="<?php echo $this->url(array('id' => $this->id), 'video') ?>">watch</a>
+        
+        <strong><?php echo implode(', ', $this->tags['dancer']) ?></strong>
+
+        <?php if (!empty($this->tags['song title']) || !empty($this->tags['song artist'])): ?>
+            dancing on
+        <?php endif; ?> 
+        <?php if (!empty($this->tags['song title']) && empty($this->tags['song artist'])): ?>
+            the song 
+        <?php endif ?> 
+        <?php if (!empty($this->tags['song title'])): ?>
+            <strong><?php echo $this->tags['song title'] ?></strong>
+        <?php endif; ?> 
+        <?php if (!empty($this->tags['song title']) && !empty($this->tags['song artist'])): ?>
+            by
+        <?php endif; ?> 
+        <?php if (!empty($this->tags['song artist'])): ?>
+            <strong><?php echo $this->tags['song artist'] ?></strong>
+        <?php endif; ?>
+
+        <?php if (!empty($this->tags['year'])): ?>
+            in <strong><?php echo $this->tags['year'] ?></strong>
+        <?php endif; ?>
+</li>

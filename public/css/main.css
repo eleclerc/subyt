@@ -27,6 +27,10 @@ p, ul {
   padding-bottom: 1em;
 }
 
+li {
+  padding-bottom: 0.5em;
+}
+
 form {
   margin: 1em auto !important;
 }
@@ -35,6 +39,9 @@ input, label {
   font-size: 1.6em;
 }
 
+a, a:visited {
+  color: midnightblue;
+}
 
 #footer {
   font-size: 0.75em;
@@ -55,8 +62,6 @@ input, label {
 
 .intro {
     font-weight: bold;
-    background-color: #EAF6FD;
-    border: 1px solid: #CFCFCF;
+    background-color: lightblue;
     padding: 2em;
 }
-

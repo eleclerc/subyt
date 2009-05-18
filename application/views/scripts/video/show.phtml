@@ -14,8 +14,8 @@
     <?php foreach ($this->tags as $category => $tagnames): ?>
     <li><strong><?php echo $category ?></strong>
     <ul>
-      <?php foreach ($tagnames as $tag): ?>
-        <li><?php echo $tag['tag'] ?></li>
+      <?php foreach ((array)$tagnames as $tag): ?>
+        <li><?php echo $tag ?></li>
       <?php endforeach; ?>
     </ul>
   </li>

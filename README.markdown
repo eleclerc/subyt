@@ -10,8 +10,8 @@ Requirements
 
 Create a `library` folder and put these libraries in it
 
-- [Zend Framewok](http://framework.zend.com) v1.8.0+
-- [ZFDebug Bar](http://code.google.com/p/zfdebug/) v1.4.1+
+- [Zend Framewok](http://framework.zend.com) v1.8.1+
+- [ZFDebug Bar](http://code.google.com/p/zfdebug/) v1.4.1
 
 Create a database and load the data
 

@@ -12,17 +12,25 @@ class Model_Video
     public function getLatest($limit = 5, $published_only = true)
     {
         $db = $this->_table->getAdapter();
-
+        $tagModel = new Model_Tag;
+        
         $select = $db->select()
                      ->from($this->_table->info('name'), array('title', 'id'))
                      ->order('title DESC')
                      ->limit($limit);
     
         if ($published_only) {
-        	$select->where('published = 1');
+            $select->where('published = 1');
         }
-                     
-        return $db->fetchAll($select);
+        
+        $rows = $db->fetchAll($select);
+        
+        // fetch the tags for each video and add them to the array
+        foreach ($rows as &$video) {
+            $video['tags'] = $tagModel->getForVideoId($video['id']);
+        }
+
+        return $rows;
     }
     
     public function getByPK($id) 

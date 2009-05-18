@@ -13,19 +13,11 @@ class VideoController extends Zend_Controller_Action
         	$this->_redirect('/');
         }
         
-        $tagsRS = $tagModel->getForVideoId(
+        $tags = $tagModel->getForVideoId(
             $this->getRequest()->getParam('id')
         );
         
-        $tags = array();
-        foreach ($tagsRS as $tag) {
-            $tags[$tag['category']][] = array(
-                'id'   => $tag['id'],
-                'tag' => $tag['tag']
-            );
-        }
         $this->view->tags = $tags;
-        
         $this->view->video = $video;
     }
     
