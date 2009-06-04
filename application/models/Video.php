@@ -11,9 +11,6 @@ class Model_Video
     protected $_updated_at;
     protected $_tags;
 
-    /* @var Model_VideoMapper */
-    protected $_mapper;
-
     /**
      * Constructor
      *
@@ -25,34 +22,6 @@ class Model_Video
         if (is_array($options)) {
             $this->setOptions($options);
         }
-    }
-
-    /**
-     * Set data mapper
-     *
-     * @param mixed $mapper
-     * @return Model_Video
-     */
-    public function setMapper($mapper)
-    {
-        $this->_mapper = $mapper;
-        return $this;
-    }
-
-    /**
-     * Get data mapper
-     *
-     * lazy load Model_Video instance if no mapper registered
-     *
-     * @return Model_VideoMapper
-     */
-    public function getMapper()
-    {
-        if (null === $this->_mapper) {
-            $this->setMapper(new Model_VideoMapper());
-        }
-
-        return $this->_mapper;
     }
 
     /**

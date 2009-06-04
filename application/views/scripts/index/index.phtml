@@ -1,7 +1,7 @@
 <p class="intro">Browse your favorite West Coast Swing video by <br />
 <br />
 <?php foreach ($this->categories as $category): ?>
-    <a href="<?php echo $this->url(array('category' => $category['category']), 'tagcategory') ?>"><?php echo $category['category'] ?></a>,
+    <a href="<?php echo $this->url(array('category' => $category->category), 'tagcategory') ?>"><?php echo $category->category ?></a>,
 <?php endforeach; ?><br />
 <br />
 or <a href="/video/list">see all videos</a></p>

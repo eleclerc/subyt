@@ -11,8 +11,8 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
     	// List of available categories
-        $category = new Model_Tagcategory;
-        $this->view->categories = $category->fetchAll();
+        $categoryService = new Model_TagcategoryService;
+        $this->view->categories = $categoryService->fetchAll();
         
         // Latest video w/ tags info
         $videoService = new Model_VideoService();
