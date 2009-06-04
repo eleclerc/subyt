@@ -9,7 +9,7 @@ class Model_VideoService
      * Set data mapper
      *
      * @param mixed $mapper
-     * @return Model_Video
+     * @return Model_VideoMapper
      */
     public function setMapper($mapper)
     {
@@ -20,7 +20,7 @@ class Model_VideoService
     /**
      * Get data mapper
      *
-     * lazy load Model_Video instance if no mapper registered
+     * lazy load Model_VideoMapper instance if no mapper registered
      *
      * @return Model_VideoMapper
      */
@@ -39,7 +39,7 @@ class Model_VideoService
      * @param int $limit amount of videos to return
      * @param bool $published_only return published_only or all video
      *
-     * @return Model_Video
+     * @return array of Model_Video
      */
     public function getLatest($limit = 5, $published_only = true)
     {
@@ -54,7 +54,7 @@ class Model_VideoService
      */
     public function getByPK($id)
     {
-        return new Model_Video($this->getMapper()->find($id));
+        return $this->getMapper()->find($id);
     }
 
     /**
@@ -93,6 +93,6 @@ class Model_VideoService
         $id = $this->getMapper()->insert($video);
         $video->id = $id;
 
-        return new Model_Video($video->toArray());
+        return $video->toArray();
     }
 }

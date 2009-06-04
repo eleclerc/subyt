@@ -10,13 +10,13 @@ class Model_Video
     protected $_created_at;
     protected $_updated_at;
     protected $_tags;
-    
+
     /* @var Model_VideoMapper */
     protected $_mapper;
 
     /**
      * Constructor
-     * 
+     *
      * @param array|null $options options to set object state
      * @return void
      */
@@ -29,7 +29,7 @@ class Model_Video
 
     /**
      * Set data mapper
-     * 
+     *
      * @param mixed $mapper
      * @return Model_Video
      */
@@ -41,9 +41,9 @@ class Model_Video
 
     /**
      * Get data mapper
-     * 
+     *
      * lazy load Model_Video instance if no mapper registered
-     * 
+     *
      * @return Model_VideoMapper
      */
     public function getMapper()
@@ -51,7 +51,7 @@ class Model_Video
         if (null === $this->_mapper) {
             $this->setMapper(new Model_VideoMapper());
         }
-        
+
         return $this->_mapper;
     }
 
@@ -62,47 +62,47 @@ class Model_Video
     {
         $method = 'get' . ucfirst($name);
         if (method_exists($this, $method)) {
-        	return $this->$method($value);
+            return $this->$method($value);
         }
-        
+
         $local = '_' . $name;
         if (property_exists($this, $local)) {
             return $this->$local;
         }
-        
+
         return null;
     }
 
     public function __set($name, $value)
     {
-    	$method = 'set' . ucfirst($name);
-    	if (method_exists($this, $method)) {
-    	   $this->$method($value);	
-    	}
-    	
+        $method = 'set' . ucfirst($name);
+        if (method_exists($this, $method)) {
+           $this->$method($value);
+        }
+
         $local = '_' . $name;
         if (!property_exists($this, $local)) {
             throw new InvalidArgumentException();
         }
-        
+
         $this->$local = $value;
     }
-    
+
     /**
      * Set object state
-     * 
+     *
      * @param array $options
      * @return Model_Video
      */
     public function setOptions($options)
     {
-    	foreach ($options as $option => $value) {
-    		$this->$option = $value;
-    	}
-    	
-    	return $this;
+        foreach ($options as $option => $value) {
+            $this->$option = $value;
+        }
+
+        return $this;
     }
-    
+
     public function toArray()
     {
         return array(
