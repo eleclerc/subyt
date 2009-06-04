@@ -4,12 +4,12 @@ class VideoController extends Zend_Controller_Action
 {
     public function showAction()
     {
-        $videoModel = new Model_Video;
-        $tagModel   = new Model_Tag;
+        $videoService = new Model_VideoService();
+        $tagModel   = new Model_Tag();
         
-        $video = $videoModel->getByPK($this->getRequest()->getParam('id'));
+        $video = $videoService->getByPK($this->getRequest()->getParam('id'));
         
-        if ($video['published'] != 1) {
+        if ($video->published != 1) {
         	$this->_redirect('/');
         }
         
@@ -23,9 +23,9 @@ class VideoController extends Zend_Controller_Action
     
     public function listAction()
     {
-    	$videoModel = new Model_Video;
+    	$videoService = new Model_VideoService();
     	
-    	$this->view->videos = $videoModel->fetchAll();
+    	$this->view->videos = $videoService->fetchAll();
     }
     
     public function submitAction()
@@ -34,10 +34,10 @@ class VideoController extends Zend_Controller_Action
     		$this->_forward('index', 'index');
     	}
     	
-    	$videoModel = new Model_Video;
+    	$videoService = new Model_VideoService();
     	
     	try {
-    	   $video = $videoModel->addFromUrl($this->getRequest()->getParam('url'));
+    	   $video = $videoService->addFromUrl($this->getRequest()->getParam('url'));
     	} catch (Exception $e) {
     		$video = null;
     		$this->view->url = $this->getRequest()->getParam('url');

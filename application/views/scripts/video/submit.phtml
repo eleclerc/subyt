@@ -1,7 +1,7 @@
 <h2>Thank you for helping the WCS Community</h2>
 
 <?php if ($this->video): ?>
-    "<b><?php echo $this->video['title'] ?></b>"
+    "<b><?php echo $this->video->title ?></b>"
     <p>The video have been added to our database and will be tagged and approved soon</p>
 <?php else: ?>
     <p>We're sorry, <?php echo $this->error ?></p>

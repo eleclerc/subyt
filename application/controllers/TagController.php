@@ -6,9 +6,9 @@ class TagController extends Zend_Controller_Action
     {
         $tag = $this->getRequest()->getParam('tag');
         
-        $videoModel = new Model_Video;
+        $videoService = new Model_VideoService();
 
-        $this->view->videos = $videoModel->getForTag($tag);
+        $this->view->videos = $videoService->getForTag($tag);
         $this->view->tag = $tag;
     }
 }

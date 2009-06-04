@@ -2,104 +2,117 @@
 
 class Model_Video
 {
-    protected $_table;
+    protected $_id;
+    protected $_url;
+    protected $_youtube_id;
+    protected $_title;
+    protected $_published;
+    protected $_created_at;
+    protected $_updated_at;
+    protected $_tags;
     
-    public function __construct()
+    /* @var Model_VideoMapper */
+    protected $_mapper;
+
+    /**
+     * Constructor
+     * 
+     * @param array|null $options options to set object state
+     * @return void
+     */
+    public function __construct(array $options = array())
     {
-        $this->_table = new Model_DbTable_Video;
+        if (is_array($options)) {
+            $this->setOptions($options);
+        }
     }
 
-    public function getLatest($limit = 5, $published_only = true)
+    /**
+     * Set data mapper
+     * 
+     * @param mixed $mapper
+     * @return Model_Video
+     */
+    public function setMapper($mapper)
     {
-        $db = $this->_table->getAdapter();
-        $tagModel = new Model_Tag;
-        
-        $select = $db->select()
-                     ->from($this->_table->info('name'), array('title', 'id'))
-                     ->order('title DESC')
-                     ->limit($limit);
-    
-        if ($published_only) {
-            $select->where('published = 1');
+        $this->_mapper = $mapper;
+        return $this;
+    }
+
+    /**
+     * Get data mapper
+     * 
+     * lazy load Model_Video instance if no mapper registered
+     * 
+     * @return Model_VideoMapper
+     */
+    public function getMapper()
+    {
+        if (null === $this->_mapper) {
+            $this->setMapper(new Model_VideoMapper());
         }
         
-        $rows = $db->fetchAll($select);
-        
-        // fetch the tags for each video and add them to the array
-        foreach ($rows as &$video) {
-            $video['tags'] = $tagModel->getForVideoId($video['id']);
+        return $this->_mapper;
+    }
+
+    /**
+     * Getter
+     */
+    public function __get($name)
+    {
+        $method = 'get' . ucfirst($name);
+        if (method_exists($this, $method)) {
+        	return $this->$method($value);
         }
-
-        return $rows;
-    }
-    
-    public function getByPK($id) 
-    {
-        $video = $this->_table->find($id);
         
-        return $video->current()->toArray();
+        $local = '_' . $name;
+        if (property_exists($this, $local)) {
+            return $this->$local;
+        }
+        
+        return null;
     }
-    
-    public function getForTag($tag, $published_only = true) 
-    {
-    	$db = $this->_table->getAdapter();
-    	
-    	$select = $db->select()
-                     ->from(array('v' => $this->_table->info('name')), array('title', 'id'))
-    	             ->join(array('t' => 'Tag'), 'v.id=t.video_id', array())
-    	             ->where('t.tag = ?', $tag);
 
-    	if ($published_only) {
-    		$select->where('v.published = 1');
+    public function __set($name, $value)
+    {
+    	$method = 'set' . ucfirst($name);
+    	if (method_exists($this, $method)) {
+    	   $this->$method($value);	
     	}
-    	             
-        return $db->fetchAll($select);	
-    }
-    
-    
-    public function fetchAll($published_only = true)
-    {
-        return $this->_table->fetchAll()->toArray();
+    	
+        $local = '_' . $name;
+        if (!property_exists($this, $local)) {
+            throw new InvalidArgumentException();
+        }
+        
+        $this->$local = $value;
     }
     
     /**
-     * Insert a new video in db from a youtube url
+     * Set object state
      * 
-     * @param $url
-     * @return array newly inserted video info
+     * @param array $options
+     * @return Model_Video
      */
-    public function addFromUrl($url)
+    public function setOptions($options)
     {
-        $urlArray = parse_url($url);
-    	if (!isset($urlArray['query'])) {
-    		throw new Exception('Invalid URL');
+    	foreach ($options as $option => $value) {
+    		$this->$option = $value;
     	}
     	
-    	parse_str($urlArray['query'], $query);
-
-    	if (!isset($query['v'])) {
-    		throw new Exception('Invalide YouTube Video URL');
-    	}
-        
-    	$youtube_id = $query['v'];
-    	        
-        $yt = new Zend_Gdata_YouTube();
-        try {
-            $videoEntry = $yt->getVideoEntry($youtube_id);
-        } catch (Zend_Gdata_App_HttpException $e) {
-            //YouTube may be down too?
-        	throw new Exception('Invalid YouTube Video URL');    
-        }   
-        
-        $data = array(
-            'url' => $url,
-            'youtube_id' => $youtube_id,
-            'title' => $videoEntry->getTitleValue(),
-        );
-        
-        $id = $this->_table->insert($data);
-        $data['id'] = $id;
-        
-        return $data;
+    	return $this;
+    }
+    
+    public function toArray()
+    {
+        return array(
+            'id'            => $this->_id,
+            'url'           => $this->_url,
+            'youtube_id'    => $this->_youtube_id,
+            'title'         => $this->_title,
+            'published'     => $this->_published,
+            'created_at'    => $this->_created_at,
+            'updated_at'    => $this->_updated_at,
+            'tags'          => $this->_tags);
     }
 }

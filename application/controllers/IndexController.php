@@ -15,8 +15,8 @@ class IndexController extends Zend_Controller_Action
         $this->view->categories = $category->fetchAll();
         
         // Latest video w/ tags info
-        $video = new Model_Video;
-        $this->view->latest = $video->getLatest();
+        $videoService = new Model_VideoService();
+        $this->view->latest = $videoService->getLatest();
     }
 }
 
