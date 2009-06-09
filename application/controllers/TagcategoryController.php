@@ -6,9 +6,9 @@ class TagcategoryController extends Zend_Controller_Action
     {
         $category = $this->getRequest()->getParam('category');
 
-        $tagModel = new Model_Tag;
+        $tagService = new Model_TagService;
         
-        $this->view->tags = $tagModel->getForCategory($category);
+        $this->view->tags = $tagService->getForCategory($category);
         $this->view->category = $category;
     }
 }

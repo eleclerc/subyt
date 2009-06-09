@@ -17,7 +17,7 @@ class Model_VideoMapper
     public function getLatest($limit = 5, $published_only = true)
     {
         $db = $this->getDbTable()->getAdapter();
-        $tagModel   = new Model_Tag;
+        $tagService   = new Model_TagService;
 
         $select = $db->select()
                      ->from($this->getDbTable()->info('name'), array('title', 'id'))
@@ -32,7 +32,7 @@ class Model_VideoMapper
 
         // fetch the tags for each video
         foreach ($rows as &$video) {
-            $video['tags'] = $tagModel->getForVideoId($video['id']);
+            $video['tags'] = $tagService->getForVideoId($video['id']);
         }
 
         $results = array();

@@ -84,7 +84,7 @@ class Model_VideoService
      * get a video from youtube and save it too
      *
      * @param $url
-     * @return array newly inserted video info
+     * @return Model_Video
      */
     public function addFromUrl($url)
     {
@@ -93,6 +93,6 @@ class Model_VideoService
         $id = $this->getMapper()->insert($video);
         $video->id = $id;
 
-        return $video->toArray();
+        return $video;
     }
 }

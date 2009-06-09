@@ -1,59 +1,82 @@
 <?php
 class Model_Tag
 {
-    protected $_table;
+    protected $_id;
+    protected $_video_id;
+    protected $_tag;
+    protected $_tagcategory_id;
+    protected $_created_at;
+    protected $_updated_at;
     
-    public function __construct()
+    /**
+     * Constructor
+     *
+     * @param array|null $options options to set object state
+     * @return void
+     */
+    public function __construct(array $options = array())
     {
-        $this->_table = new Model_DbTable_Tag;
-    }
-    
-    public function getLatest($limit=5)
-    {
-        $db = $this->_table->getAdapter();
-        
-        $select = $db->select()
-                     ->from($this->_table->info('name'), array('tag'))
-                     ->join('tagcategory', 'tagcategory_id=tagcategory.id', 'tagcategory.category')
-                     ->order('created_at DESC')
-                     ->limit($limit);
-        
-        return $db->fetchAll($select);
-    }
-    
-    public function getForVideoId($video_id)
-    {
-        $db = $this->_table->getAdapter();
-        
-        $tags = array();
-        $select = $db->select()
-                     ->from('tag', array('tag', 'id'))
-                     ->from('tagcategory', 'category')
-                     ->where('tagcategory.id=tag.tagcategory_id')
-                     ->where('tag.video_id = ?', $video_id);
-        $rows = $db->fetchAll($select);
-        
-        foreach ($rows as $tag) {
-            if ($tag['category'] == 'dancer') {
-                $tags['dancer'][] = $tag['tag'];
-            } else {
-                $tags[$tag['category']] = $tag['tag'];
-            }
+        if (is_array($options)) {
+            $this->setOptions($options);
         }
-            
-        return $tags;
     }
-    
-    public function getForCategory($category) 
+
+    /**
+     * Getter
+     */
+    public function __get($name)
     {
-        $db = $this->_table->getAdapter();
-        
-        $select = $db->select()
-                     ->from(array('t' => $this->_table->info('name')), array('tag'))
-                     ->join(array('c' => 'Tagcategory'), 'c.id=t.tagcategory_id', array())
-                     ->where('c.category = ?', $category)
-                     ->distinct();
-                            
-        return $db->fetchAll($select);  
+        $method = 'get' . ucfirst($name);
+        if (method_exists($this, $method)) {
+            return $this->$method($value);
+        }
+
+        $local = '_' . $name;
+        if (property_exists($this, $local)) {
+            return $this->$local;
+        }
+
+        return null;
+    }
+
+    public function __set($name, $value)
+    {
+        $method = 'set' . ucfirst($name);
+        if (method_exists($this, $method)) {
+           $this->$method($value);
+        }
+
+        $local = '_' . $name;
+        if (!property_exists($this, $local)) {
+            throw new InvalidArgumentException();
+        }
+
+        $this->$local = $value;
+    }
+
+    /**
+     * Set object state
+     *
+     * @param array $options
+     * @return Model_Video
+     */
+    public function setOptions($options)
+    {
+        foreach ($options as $option => $value) {
+            $this->$option = $value;
+        }
+
+        return $this;
+    }
+
+    public function toArray()
+    {
+        return array(
+            'id'             => $this->_id,
+            'video_id'       => $this->_category,
+            'tag'            => $this->_tag,
+            'tagcategory_id' => $this->_tagcategory_id,
+            'created_at'     => $this->_created_at,
+            'updated_at'     => $this->_updated_at);
     }
 }

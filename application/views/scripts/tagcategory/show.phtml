@@ -2,7 +2,7 @@
 <ul>
 <?php foreach ($this->tags as $tag): ?>
     <li>
-        <a href="<?php echo $this->url(array('tag' => $tag['tag']), 'tag') ?>"><?php echo $tag['tag'] ?></a>
+        <a href="<?php echo $this->url(array('tag' => $tag->tag), 'tag') ?>"><?php echo $tag->tag ?></a>
     </li>
 <?php endforeach; ?>
 </ul>

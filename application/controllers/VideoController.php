@@ -5,7 +5,7 @@ class VideoController extends Zend_Controller_Action
     public function showAction()
     {
         $videoService = new Model_VideoService();
-        $tagModel   = new Model_Tag();
+        $tagService   = new Model_TagService();
         
         $video = $videoService->getByPK($this->getRequest()->getParam('id'));
         
@@ -13,7 +13,7 @@ class VideoController extends Zend_Controller_Action
         	$this->_redirect('/');
         }
         
-        $tags = $tagModel->getForVideoId(
+        $tags = $tagService->getForVideoId(
             $this->getRequest()->getParam('id')
         );
         
