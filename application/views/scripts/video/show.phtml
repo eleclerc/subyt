@@ -1,6 +1,6 @@
 <h2><?php echo $this->video->title ?></h2>
 
-<div id="video_object" class="lfloat">
+<div class="span-12 first">
   <object width="425" height="344">
     <param name="movie" value="http://www.youtube.com/v/<?php echo $this->video->youtube_id ?>&hl=en&fs=1"></param>
     <param name="allowFullScreen" value="true"></param>
@@ -10,6 +10,7 @@
   <p><small><a href="http://www.youtube.com/watch?v=<?php echo $this->video->youtube_id ?>">original source</a></small></p>
 </div>
 
+<div class="span-12 last">
 <ul>
     <?php foreach ($this->tags as $category => $tagnames): ?>
     <li><strong><?php echo $category ?></strong>
@@ -21,5 +22,6 @@
   </li>
   <?php endforeach; ?>
 </ul>
+</div>
+<div class="clear"></div>
 
-<br style="clear:both" />

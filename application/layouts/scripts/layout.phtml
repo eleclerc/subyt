@@ -2,14 +2,26 @@
 <html>
 <head>
   <?php echo $this->headTitle() ?>
+  <link type="text/css" rel="stylesheet" href="/css/blueprint/screen.css" media="screen, projection" />
+  <link type="text/css" rel="stylesheet" href="/css/blueprint/print.css" media="print" />
+  <!--[if lt IE 8]>
+    <link type="text/css" rel="stylesheet" href="/css/blueprint/ie.css" media="screen, projection">
+  <![endif]-->
   <?php echo $this->headLink()->appendStylesheet('/css/main.css'); ?>
   <?php echo $this->headScript()->appendFile('/js/jquery-1.3.2.min.js')?>
 </head>
 <body>
-<div id="container">
-  <h1><a href="/">SubYT</a></h1>
-  <?php echo $this->layout()->content ?>
-  <p id="footer">&copy; 2009 <a href="http://danceric.net">Danceric</a></p>
-</div>
+  <div class="container">
+    <div class="span-24">
+      <h1><a href="/"><img src="/images/lyd-video-inverted.png" alt="Live Your Dance Video"></a></h1>
+      <p>All your favourites West Coast Swing dancing videos</p>
+    </div>
+    <div class="clear"></div>
+  	  <?php echo $this->layout()->content ?>
+  	<div class="clear"></div>
+    <div class="span-24 quiet append-top">
+      <p id="footer">&copy; 2009 <a class="quiet" href="http://www.danceric.net">Danceric</a></p>
+    </div>
+  </div>
 </body>
 </html>
