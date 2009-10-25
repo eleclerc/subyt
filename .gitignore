@@ -1,0 +1,10 @@
+.DS_Store
+.buildpath
+.cache
+.project
+.settings
+library/ZFDebug
+library/Zend
+library/ZendX
+scripts/zf.php
+public/images/ythumbs/*.jpg

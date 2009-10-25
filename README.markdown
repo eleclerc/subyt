@@ -8,10 +8,10 @@ It's current purpose is to be a testing bed for GitHub, Zend Framework and Googl
 Requirements
 ------------
 
-Create a `library` folder and put these libraries in it
+Create a `library` folder and put these libraries in it (or have them in your php include path)
 
-- [Zend Framewok](http://framework.zend.com) v1.8.1+
-- [ZFDebug Bar](http://code.google.com/p/zfdebug/) v1.4.1
+- [Zend Framewok](http://framework.zend.com) v1.9.x
+- [ZFDebug Bar](http://code.google.com/p/zfdebug/) v1.5.x
 
 Create a database and load the data
 
