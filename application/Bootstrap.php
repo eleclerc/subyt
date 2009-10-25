@@ -33,11 +33,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             return;
         }
 
-        require_once 'ZFDebug/Controller/Plugin/Debug.php';
-
         // Ensure DB instance is present, and fetch it
         $this->bootstrap('Db');
         $db = $this->getResource('Db');
+
+        $autoloader = Zend_Loader_Autoloader::getInstance();
+        $autoloader->registerNamespace('ZFDebug_');
 
         $options = array(
             'database_adapter' => $db,
