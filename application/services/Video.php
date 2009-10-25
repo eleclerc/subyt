@@ -1,6 +1,6 @@
 <?php
 
-class Model_VideoService
+class Service_Video
 {
     /* @var Model_VideoMapper */
     protected $_mapper;

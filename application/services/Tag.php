@@ -1,5 +1,5 @@
 <?php
-class Model_TagService
+class Service_Tag
 {
     /* @var Model_TagMapper */
     protected $_mapper;

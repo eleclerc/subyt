@@ -6,7 +6,7 @@ class Model_VideoMapper
 
     public function __construct()
     {
-        $this->_dbTable = new Model_DbTable_Video;
+        $this->_dbTable = new Model_DbTable_Video();
     }
 
     public function getDbTable()
@@ -17,7 +17,7 @@ class Model_VideoMapper
     public function getLatest($limit = 5, $published_only = true)
     {
         $db = $this->getDbTable()->getAdapter();
-        $tagService   = new Model_TagService;
+        $tagService   = new Service_Tag();
 
         $select = $db->select()
                      ->from($this->getDbTable()->info('name'), array('title', 'id'))

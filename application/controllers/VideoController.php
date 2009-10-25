@@ -4,8 +4,8 @@ class VideoController extends Zend_Controller_Action
 {
     public function showAction()
     {
-        $videoService = new Model_VideoService();
-        $tagService   = new Model_TagService();
+        $videoService = new Service_Video();
+        $tagService   = new Service_Tag();
         
         $video = $videoService->getByPK($this->getRequest()->getParam('id'));
         
@@ -23,7 +23,7 @@ class VideoController extends Zend_Controller_Action
     
     public function listAction()
     {
-    	$videoService = new Model_VideoService();
+    	$videoService = new Service_Video();
     	
     	$this->view->videos = $videoService->fetchAll();
     }
@@ -34,7 +34,7 @@ class VideoController extends Zend_Controller_Action
     		$this->_forward('index', 'index');
     	}
     	
-    	$videoService = new Model_VideoService();
+    	$videoService = new Service_Video();
     	
     	try {
     	   $video = $videoService->addFromUrl($this->getRequest()->getParam('url'));

@@ -5,7 +5,7 @@ class Model_TagcategoryMapper
 
     public function __construct()
     {
-        $this->_dbTable = new Model_DbTable_Tagcategory;
+        $this->_dbTable = new Model_DbTable_Tagcategory();
     }
 
     public function getDbTable()

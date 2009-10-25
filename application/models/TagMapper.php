@@ -5,7 +5,7 @@ class Model_TagMapper
     
     public function __construct()
     {
-        $this->_dbTable = new Model_DbTable_Tag;
+        $this->_dbTable = new Model_DbTable_Tag();
     }
 
     public function getDbTable()
